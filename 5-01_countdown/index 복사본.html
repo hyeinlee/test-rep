@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<title>template</title>
+<link href="../../_common/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+<div class="header-contents">
+<h1>제목</h1>
+<h2>부제목</h2>
+</div><!-- /.header-contents -->
+</header>
+<div class="main-wrapper">
+<section>
+    <p>오늘 남은 시간은 <span id="output"></span>입니다</p>
+</section>
+</div><!-- /.main-wrapper -->
+<footer>JavaScript Samples</footer>
+<script>
+    var countdown = function(due) {
+        var now = new Date();
+        var rest = due.getTime() - now.getTime();
+        var sec = Math.floor(rest / 1000 % 60);
+        var min = Math.floor(rest / 1000 / 60) % 60;
+        var hours = Math.floor(rest / 1000 / 60 / 60 ) % 24;
+        var days = Math.floor(rest / 1000 / 60 / 60 / 24);
+        var count = [days, hours, min, sec]
+        
+        return count;
+    }
+    
+    var goal = new Date(2020, 8, 30);
+    
+    var recalc = function() {
+        var counter = countdown(goal);
+        var time = counter["0"] + 'day' + counter[1] + 'hour' + counter[2] + 'min';
+        document.getElementById('output').textContent = time;
+        refresh();
+    }
+    
+    var refresh = function() {
+        setTimeout(recalc, 1000);
+    }
+    
+    recalc();
+    
+    
+    
+</script>
+</body>
+</html>
